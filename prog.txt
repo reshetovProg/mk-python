@@ -1,0 +1,23 @@
+import speech_recognition as sr
+import pyttsx3
+
+def talk(words):
+    engine = pyttsx3.init()
+    engine.say(words)
+    engine.runAndWait()
+
+def command():
+    r = sr.Recognizer()
+
+    with sr.Microphone(device_index=1) as source:
+        audio = r.listen(source)
+
+    try:
+        task = r.recognize_google(audio, language='ru-RU').lower()
+        print('понял', task)
+    except Exception as e:
+        print(e)
+        talk('не понял')
+
+talk("Привет мой дорогой друг")
+command()
