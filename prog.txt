@@ -15,9 +15,11 @@ def command():
     try:
         task = r.recognize_google(audio, language='ru-RU').lower()
         print('понял', task)
+        talk('поняла ')
+        talk(task)
     except Exception as e:
         print(e)
-        talk('не понял')
+        talk('не поняла')
 
 talk("Привет мой дорогой друг")
 command()
